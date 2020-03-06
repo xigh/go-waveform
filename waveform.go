@@ -28,6 +28,7 @@ func initOptions(o *Options) *Options {
 	no := &Options{
 		Width:  800,
 		Height: 250,
+		Zoom:   0.8,
 		Front: &color.RGBA{
 			R: 255,
 			G: 255,
