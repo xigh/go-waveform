@@ -19,6 +19,7 @@ type Options struct {
 	Width  int
 	Height int
 	Half   bool
+	Zoom   float32
 	Back   *color.RGBA
 	Front  *color.RGBA
 }
@@ -40,20 +41,25 @@ func initOptions(o *Options) *Options {
 			A: 255,
 		},
 	}
-	if o.Half {
-		no.Half = true
-	}
-	if o.Width > 0 {
-		no.Width = o.Width
-	}
-	if o.Height > 0 {
-		no.Height = o.Height
-	}
-	if o.Back != nil {
-		no.Back = o.Back
-	}
-	if o.Front != nil {
-		no.Front = o.Front
+	if o != nil {
+		if o.Half {
+			no.Half = true
+		}
+		if o.Width > 0 {
+			no.Width = o.Width
+		}
+		if o.Height > 0 {
+			no.Height = o.Height
+		}
+		if o.Back != nil {
+			no.Back = o.Back
+		}
+		if o.Front != nil {
+			no.Front = o.Front
+		}
+		if o.Zoom != 0 {
+			no.Zoom = o.Zoom
+		}
 	}
 	return no
 }
@@ -81,11 +87,11 @@ func Max(w WaveReader, o *Options) *image.RGBA {
 			h := rand.Float32()
 			m := float32(o.Height) / 2
 			H := h * m
-			t := m - H*.8
-			b := m + H*.8
+			t := m - H*o.Zoom
+			b := m + H*o.Zoom
 			if o.Half {
 				b = float32(o.Height)
-				t = b - h*b*.8
+				t = b - h*b*o.Zoom
 			}
 			for y := int(t); y < int(b); y++ {
 				wf.SetRGBA(x, y, *o.Front)
