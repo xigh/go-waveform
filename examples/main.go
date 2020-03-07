@@ -59,6 +59,8 @@ func processWav(wavFile string) error {
 	if err != nil {
 		return err
 	}
+	defer r.Close()
+
 	w0, err := wavreader.New(r)
 	if err != nil {
 		return err

@@ -2,7 +2,13 @@
 
 Go module to generate and render waveform images from audio files
 
+Example :
+
 ![combined](combined.png)
+
+We can zoom :
+
+![combined2](combined2.png)
 
 # TODO
 
