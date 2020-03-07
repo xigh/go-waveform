@@ -15,12 +15,12 @@ Go module to generate and render waveform images from audio files
 
 ```go
 import (
+    // ...
 	"github.com/xigh/go-waveform"
 	"github.com/xigh/go-wavreader"
 )
 
-// ...
-
+func main() {
 	r, err := os.Open("test.wav")
 	if err != nil {
 		return err
@@ -29,7 +29,7 @@ import (
 	
 	w0, err := wavreader.New(r)
 	if err != nil {
-		return err
+        return err
     }
     
 	img := waveform.MinMax(w1, &waveform.Options{
@@ -61,5 +61,6 @@ import (
 	err = png.Encode(w, img)
 	if err != nil {
 		return err
-	}
+    }
+}
 ```
