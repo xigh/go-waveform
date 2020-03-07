@@ -43,13 +43,13 @@ func TestMax(t *testing.T) {
 	dw := newDummyWave()
 	im := Max(dw, &Options{
 		Width: 1800,
-		Front: &color.RGBA{
+		Front: &color.NRGBA{
 			R: 50,
 			G: 100,
 			B: 200,
 			A: 255,
 		},
-		Back: &color.RGBA{
+		Back: &color.NRGBA{
 			A: 0,
 		},
 	})
@@ -68,13 +68,13 @@ func TestMaxHalf(t *testing.T) {
 	im := Max(dw, &Options{
 		Width: 1800,
 		Half:  true,
-		Front: &color.RGBA{
+		Front: &color.NRGBA{
 			R: 10,
 			G: 50,
 			B: 250,
 			A: 255,
 		},
-		Back: &color.RGBA{
+		Back: &color.NRGBA{
 			A: 0,
 		},
 	})
