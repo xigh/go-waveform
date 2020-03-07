@@ -21,7 +21,7 @@ import (
 )
 
 func main() {
-	r, err := os.Open("test.wav")
+	r, err := os.Open("test-hello.wav")
 	if err != nil {
 		return err
 	}
