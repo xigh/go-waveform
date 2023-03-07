@@ -1,6 +1,7 @@
 package waveform
 
 import (
+	"fmt"
 	"image/color"
 	"image/png"
 	"math/rand"
@@ -24,24 +25,24 @@ func (dw dummyWave) Len() uint64 {
 	return uint64(len(dw))
 }
 
-func (dw dummyWave) Rate() uint {
+func (dw dummyWave) Rate() uint32 {
 	return 48000
 }
 
-func (dw dummyWave) Chans() uint {
+func (dw dummyWave) Chans() uint16 {
 	return 1
 }
 
-func (dw dummyWave) At(ch uint, offset uint64) float32 {
+func (dw dummyWave) At(ch uint, offset uint64) (float32, error) {
 	if ch != 0 {
-		panic("invalid channel")
+		return 0.0, fmt.Errorf("invalid channel")
 	}
-	return dw[offset]
+	return dw[offset], nil
 }
 
 func TestMax(t *testing.T) {
 	dw := newDummyWave()
-	im := Max(dw, &Options{
+	im := MinMax(dw, &Options{
 		Width: 1800,
 		Front: &color.NRGBA{
 			R: 50,
@@ -65,7 +66,7 @@ func TestMax(t *testing.T) {
 
 func TestMaxHalf(t *testing.T) {
 	dw := newDummyWave()
-	im := Max(dw, &Options{
+	im := MinMax(dw, &Options{
 		Width: 1800,
 		Half:  true,
 		Front: &color.NRGBA{

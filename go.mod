@@ -1,5 +1,8 @@
-module github.com/xigh/go-waveform/v1
+module github.com/xigh/go-waveform
 
-go 1.13
+go 1.20
 
-require golang.org/x/image v0.0.0-20200119044424-58c23975cae1
+require (
+	github.com/xigh/go-wavreader v0.0.0-20210516212152-f49019aa7352
+	golang.org/x/image v0.6.0
+)
